@@ -168,7 +168,7 @@ video {
   object-fit: cover;
 }
 .container {
-  margin-top: 6rem;
+  margin-top: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -529,4 +529,49 @@ video {
     rgba(0, 0, 0, 0.75),
     rgba(0, 0, 0, 0)
   );
+}
+.filter {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.materialInput {
+  font-family: "Courier New", Courier, monospace;
+  appearance: none; /* Removes the default styling (browsers vary) */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 2.5px;
+  background-color: #fff;
+  margin-left: 0.5rem;
+}
+.materialInput * {
+  border-radius: 15px;
+  background-color: rgb(202, 57, 57);
+}
+.priceInput {
+  font-family: "Courier New", Courier, monospace;
+  appearance: none; /* Removes the default styling (browsers vary) */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 2.5px;
+  background-color: #fff;
+  margin-left: 0.5rem;
+}
+.filter button {
+  width: 4rem;
+  font-family: sans-serif;
+  height: 1.8rem;
+  border-radius: 3px;
+  background-color: black;
+  color: white;
+  border: 0;
+  transition: 0.59s;
+}
+.filter button:hover {
+  color: black;
+  background-color: white;
+  border: 1px solid rgba(128, 128, 128, 0.472);
+  border-radius: 15px;
 }

@@ -1,6 +1,6 @@
 export async function getJew() {
   const res = await fetch(
-    "https://run.mocky.io/v3/db746a4d-a7c5-42c5-b90e-7e0b41384057"
+    "https://run.mocky.io/v3/c6aa5985-86e3-4794-963b-45a1b2b14be7"
   );
   const data = await res.json();
   return data;

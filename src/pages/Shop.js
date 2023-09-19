@@ -17,10 +17,30 @@ export function loader() {
 export default function JewelryLayout() {
   const { cartItems } = React.useContext(Context);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [material, setMaterial] = useState("");
+  const [price, setPrice] = useState("");
   const jewelry = useLoaderData();
   const filter = searchParams.get("type");
-  const filteredJ = filter ? jewelry.filter((j) => j.type === filter) : jewelry;
-  const displayJew = filteredJ.map((jew) => (
+  let filteredProd = filter
+    ? jewelry.filter((j) => j.type === filter)
+    : jewelry;
+
+  ///sorting by price
+  filteredProd =
+    price === ""
+      ? filteredProd.sort((a, b) => a.name.localeCompare(b.name))
+      : price === "descend"
+      ? filteredProd.sort((a, b) => Number(a.price) - Number(b.price))
+      : price === "ascend"
+      ? filteredProd.sort((a, b) => Number(b.price) - Number(a.price))
+      : filteredProd;
+
+  ////checking if material is provided and filtering it based on it
+  if (material) {
+    filteredProd = filteredProd.filter((prod) => prod.material === material);
+  }
+  console.log(filteredProd);
+  const displayJew = filteredProd.map((jew) => (
     <Link to={jew.id}>
       <div key={jew.id} className="item">
         <div className="img">
@@ -33,6 +53,10 @@ export default function JewelryLayout() {
     </Link>
   ));
 
+  const resetSort = () => {
+    setPrice("");
+    setMaterial("");
+  };
   return (
     <>
       <div className="jewelry-layout-link">
@@ -45,6 +69,40 @@ export default function JewelryLayout() {
             {cartItems.length > 0 ? <IoBag /> : <IoBagOutline />}
           </Link>
         </IconContext.Provider>
+      </div>
+      <div className="filter">
+        <section>
+          <label htmlFor="materials">Select a material:</label>
+          <select
+            id="materials"
+            onChange={(e) => setMaterial(e.target.value)}
+            className="materialInput"
+            value={material}
+          >
+            <option value="" disabled selected>
+              Any
+            </option>
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
+            <option value="stone">Stone</option>
+          </select>
+        </section>
+        <section>
+          <label htmlFor="sort">Sort by:</label>
+          <select
+            id="sort"
+            onChange={(e) => setPrice(e.target.value)}
+            className="priceInput"
+            value={price}
+          >
+            <option value="" disabled selected>
+              Any
+            </option>
+            <option value="descend">Lowest price</option>
+            <option value="ascend">Highest price</option>
+          </select>
+        </section>
+        <button onClick={resetSort}>Reset</button>
       </div>
       <div className="container">{displayJew}</div>
       <ScrollToTop smooth color="ffff" />

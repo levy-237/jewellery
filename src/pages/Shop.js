@@ -39,7 +39,7 @@ export default function JewelryLayout() {
   if (material) {
     filteredProd = filteredProd.filter((prod) => prod.material === material);
   }
-  console.log(filteredProd);
+ 
   const displayJew = filteredProd.map((jew) => (
     <Link to={jew.id}>
       <div key={jew.id} className="item">

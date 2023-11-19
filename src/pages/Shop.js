@@ -19,6 +19,7 @@ export default function JewelryLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [material, setMaterial] = useState("");
   const [price, setPrice] = useState("");
+  const ScrollToTop = () => window.scrollTo(0, 0);
   const jewelry = useLoaderData();
   const filter = searchParams.get("type");
   let filteredProd = filter
@@ -42,7 +43,7 @@ export default function JewelryLayout() {
  
   const displayJew = filteredProd.map((jew) => (
     <Link to={jew.id}>
-      <div key={jew.id} className="item">
+      <div key={jew.id} className="item" onClick={ScrollToTop}>
         <div className="img">
           <img src={jew.url} />
         </div>

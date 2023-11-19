@@ -14,6 +14,7 @@ export default function ShopDetail() {
   const [openModal, setOpenModal] = React.useState(false);
   const { id } = useParams();
   const items = useLoaderData();
+  const scrollToTop = () => window.scrollTo(0, 0);
   const display = items.find((it) => it.id === id);
   const recommend = items
     .filter((prod) => prod.type === display.type)
@@ -24,7 +25,7 @@ export default function ShopDetail() {
       <img src={it.url} />
       <h3>{it.name}</h3>
       <h4>{it.price}$</h4>
-      <a href={`/shop/${it.id}`}>View </a>
+      <a href={`/shop/${it.id}`} onClick={scrollToTop}>View </a>
     </div>
   ));
 
